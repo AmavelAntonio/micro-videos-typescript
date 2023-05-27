@@ -9,34 +9,30 @@ type EntitiesCategory = {
 
 
 export class Category {
-    constructor(public readonly props: EntitiesCategory){}
+    constructor(public readonly props: EntitiesCategory){
+        this.props.description = this.props.description
+        this.props.isActive = this.props.isActive ?? true
+        this.props.created_At = this.props.created_At ?? new Date()
+    }
 
     get name(): string {
        return this.props.name
     }
 
-    set name(name: string) {
-        this.props.name = name
+    set description (description: string) {
+        this.props.description = description ?? null;
     }
 
-    set description (description: string | undefined) {
-        this.props.description = description;
-    }
-
-    get description (): string | undefined {
+    get description (): string {
         return this.props.description;
     }
 
-    set isActive (isActive: boolean | undefined) {
-        this.props.isActive = isActive;
+    private set isActive (isActive: boolean ) {
+        this.props.isActive = isActive ?? null;
     }
 
-    get isActive(): boolean | undefined {
+    get isActive(): boolean {
         return this.props.isActive;
-    }
-
-    set created_At(createdAt: Date | undefined ) {
-        this.props.created_At = createdAt;
     }
 
     get created_At(): Date | undefined {
