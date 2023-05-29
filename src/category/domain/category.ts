@@ -1,6 +1,7 @@
 import { isAnyArrayBuffer } from "util/types"
+import { v4 as uuidV4 } from "uuid";
 
-type EntitiesCategory = {
+export type EntitiesCategories = {
     name: string
     description?: string
     isActive?: boolean 
@@ -9,7 +10,10 @@ type EntitiesCategory = {
 
 
 export class Category {
-    constructor(public readonly props: EntitiesCategory){
+    public readonly id: string;
+
+    constructor(public readonly props: EntitiesCategories, id?: string){
+        this.id = id || uuidV4()
         this.props.description = this.props.description ?? null
         this.props.isActive = this.props.isActive ?? true
         this.props.created_At = this.props.created_At ?? new Date()
