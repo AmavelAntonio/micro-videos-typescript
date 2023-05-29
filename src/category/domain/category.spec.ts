@@ -1,8 +1,36 @@
-import { Category } from "./category";
+import exp from "constants";
+import { Category, EntitiesCategories } from "./category";
 import { omit } from "lodash"
+import {v4 as uuidV4, validate as uuidV4Validade} from "uuid";
+
+type PropsCategories = {
+    props: EntitiesCategories
+    id?: string
+}
 
 
 describe("Unity test of category", () => {
+    
+
+    test("Should be test if id ins't null", () => {
+        const category = new Category({name: "Buca"}, uuidV4())
+
+        const data: PropsCategories [] = [
+            { props: { name: "Paulo"}, id: null },
+            { props: { name: "Sola"}, id: undefined},
+            { props: { name: "AGHghbed" }, id: uuidV4()}
+        ]
+
+        data.forEach((i) => {
+            const category = new Category({name: i.props.name }, i.id);
+            expect(category.id).not.toBeNull();
+            expect(category.id).toBeTruthy();
+            expect(uuidV4Validade(category.id)).toBeTruthy()
+        })
+
+        expect(category.id).not.toBeNull()
+    })
+
     test("Should be true entities category", () => {
         const created_At = new Date()
 
@@ -77,4 +105,5 @@ describe("Unity test of category", () => {
         expect(props.created_At).toBeInstanceOf(Date)
 
     })
+
 })
