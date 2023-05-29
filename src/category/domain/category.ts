@@ -10,7 +10,7 @@ type EntitiesCategory = {
 
 export class Category {
     constructor(public readonly props: EntitiesCategory){
-        this.props.description = this.props.description
+        this.props.description = this.props.description ?? null
         this.props.isActive = this.props.isActive ?? true
         this.props.created_At = this.props.created_At ?? new Date()
     }
@@ -19,7 +19,7 @@ export class Category {
        return this.props.name
     }
 
-    set description (description: string) {
+    private set description (description: string) {
         this.props.description = description ?? null;
     }
 
