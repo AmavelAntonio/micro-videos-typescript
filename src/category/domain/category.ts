@@ -1,5 +1,6 @@
 import { isAnyArrayBuffer } from "util/types"
 import { v4 as uuidV4 } from "uuid";
+import UniqueEntityId from "@seedwork/domain/unique-entity-id-vo";
 
 export type EntitiesCategories = {
     name: string
@@ -10,10 +11,11 @@ export type EntitiesCategories = {
 
 
 export class Category {
-    public readonly id: string;
 
-    constructor(public readonly props: EntitiesCategories, id?: string){
-        this.id = id || uuidV4()
+    public readonly id: UniqueEntityId;
+
+    constructor(public readonly props: EntitiesCategories, id?: UniqueEntityId){
+        this.id = id || new UniqueEntityId()
         this.props.description = this.props.description ?? null
         this.props.isActive = this.props.isActive ?? true
         this.props.created_At = this.props.created_At ?? new Date()
