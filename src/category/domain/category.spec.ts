@@ -2,10 +2,11 @@ import exp from "constants";
 import { Category, EntitiesCategories } from "./category";
 import { omit } from "lodash"
 import {v4 as uuidV4, validate as uuidV4Validade} from "uuid";
+import UniqueEntityId from "@seedwork/domain/unique-entity-id-vo";
 
 type PropsCategories = {
     props: EntitiesCategories
-    id?: string
+    id?: UniqueEntityId
 }
 
 
@@ -13,19 +14,19 @@ describe("Unity test of category", () => {
     
 
     test("Should be test if id ins't null", () => {
-        const category = new Category({name: "Buca"}, uuidV4())
+        const category = new Category({name: "Buca"}, new UniqueEntityId)
 
         const data: PropsCategories [] = [
             { props: { name: "Paulo"}, id: null },
             { props: { name: "Sola"}, id: undefined},
-            { props: { name: "AGHghbed" }, id: uuidV4()}
+            { props: { name: "AGHghbed" }, id: new UniqueEntityId()}
         ]
 
         data.forEach((i) => {
-            const category = new Category({name: i.props.name }, i.id);
+            const category = new Category({name: i.props.name }, i.id as any);
             expect(category.id).not.toBeNull();
             expect(category.id).toBeTruthy();
-            expect(uuidV4Validade(category.id)).toBeTruthy()
+            expect(category.id).toBeInstanceOf(UniqueEntityId)
         })
 
         expect(category.id).not.toBeNull()
