@@ -1,8 +1,7 @@
-import exp from "constants";
 import { Category, EntitiesCategories } from "./category";
 import { omit } from "lodash"
-import {v4 as uuidV4, validate as uuidV4Validade} from "uuid";
-import UniqueEntityId from "@seedwork/domain/unique-entity-id-vo";
+import UniqueEntityId from "../../shared/domain/unique-entity-id-vo";
+import InvalidUuidError from "shared/errors/invalid-uuid.error";
 
 type PropsCategories = {
     props: EntitiesCategories
@@ -14,7 +13,7 @@ describe("Unity test of category", () => {
     
 
     test("Should be test if id ins't null", () => {
-        const category = new Category({name: "Buca"}, new UniqueEntityId)
+        const category = new Category({name: "Buca"})
 
         const data: PropsCategories [] = [
             { props: { name: "Paulo"}, id: null },
