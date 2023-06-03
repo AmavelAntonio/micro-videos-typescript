@@ -1,6 +1,6 @@
 import { isAnyArrayBuffer } from "util/types"
 import { v4 as uuidV4 } from "uuid";
-import UniqueEntityId from "@seedwork/domain/unique-entity-id-vo";
+import UniqueEntityId from "../../shared/domain/unique-entity-id-vo";
 
 export type EntitiesCategories = {
     name: string
