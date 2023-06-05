@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "ts-node": "tsc",
     "tsc-clean": "rm tsconfig.tsbuildinfo"
   },
