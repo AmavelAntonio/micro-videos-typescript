@@ -1,7 +1,7 @@
 import { Category, EntitiesCategories } from "./category";
 import { omit } from "lodash"
-import UniqueEntityId from "../../shared/domain/unique-entity-id-vo";
-import InvalidUuidError from "shared/errors/invalid-uuid.error";
+import UniqueEntityId from "./uniqueentity.vo";
+import InvalidUuidError from "../errors/invalid-uuid.error";
 
 type PropsCategories = {
     props: EntitiesCategories
@@ -39,7 +39,6 @@ describe("Unity test of category", () => {
             name: "Paulo"
         })
         const props = omit(category.props, "created_At");
-        console.log(category)
 
         expect(props).toStrictEqual({
             name: "Paulo",
